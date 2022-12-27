@@ -6,6 +6,7 @@ use App\Models\PphSendiri;
 use App\Models\PphNon;
 use App\Models\DokumenPphPasal;
 use App\Models\DokumenPphNon;
+use App\Models\Posting;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -163,7 +164,9 @@ class PPController extends Controller
             'jumlah_setor' => $request->jumlah_setor,
             'no_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             // 'no_bukti' => '2',
-            'status' => 'belum posting'
+            'status' => 'belum posting',
+            'kelebihan_pemotongan' => $request->kelebihan_pemotongan,
+            'pernyataan' => $request->pernyataan
         ];
         $pph_nonresiden= new PphNon();
         $pph_nonresiden->create($data);
@@ -205,4 +208,9 @@ class PPController extends Controller
         return response()->json('sukses');
     } 
     
+    //posting-------------------------------------------------------------
+    public function get_posting(){
+        $data = Posting::get();
+        return response()->json($data,200);
+    }
 }

@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('no_bukti');
             $table->string('status');
             $table->foreignId('pengaturan_id')->nullable()->constrained('pengaturan');
+            $table->string('kelebihan_pemotongan', ['pengembalian', 'pemindahbukuan']);
+            $table->string('pernyataan');
             $table->timestamps();
         });
     }

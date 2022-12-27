@@ -29,7 +29,9 @@ class PphNon extends Model
         'tarif',
         'jumlah_setor',
         'no_bukti',
-        'status'
+        'status',
+        'kelebihan_pemotongan',
+        'pernyataan'
     ];
     
 }
