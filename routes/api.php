@@ -32,7 +32,7 @@ use App\Http\Controllers\PPController;
     Route::get('hapusdokumen/{id}', [PPController::class, 'hapus_dokumen']);
     Route::get('hapus_pphpasal/{id}', [PPController::class, 'hapus_pphpasal']);
 
-    Route::get('tambahpphnon', [PPController::class, 'proses_tambah_pphnon']);
+    Route::post('tambahpphnon', [PPController::class, 'proses_tambah_pphnon']);
     Route::get('pphnon', [PPController::class, 'get_pphnon']);
 
     

@@ -13,7 +13,7 @@ class DokumenPphNon extends Model
         'nama_dokumen',
         'no_dokumen',
         'tgl_dokumen',
-        'pph_nonresiden'
+        'pphnon_id'
     ];
     
 }

@@ -13,7 +13,7 @@ class DokumenPphPasal extends Model
         'nama_dokumen',
         'no_dokumen',
         'tgl_dokumen',
-        'pphpasal'
+        'pphpasal_id'
     ];
     
 }

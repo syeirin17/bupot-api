@@ -16,13 +16,13 @@ class PPController extends Controller
         try {
             $hitung_data_hari_ini = PphSendiri::select("id")
         ->where('tanggal_setor', date('Y-m-d',time()))
-        ->get()->count() + 1; 
+        ->get()->count(); 
         // return response()->json($hitung_data_hari_ini,200);
         $data = [
             'jenis_bukti_penyetoran' => $request->jenis_bukti_penyetoran,
             'ntpn' => $request->ntpn,
             'nomor_pemindahbukuan' => $request->nomor_pemindahbukuan,
-            'nomor_bukti' => date('Ymd',time()).str_pad($hitung_data_hari_ini, 6, '0', STR_PAD_LEFT),
+            'nomor_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             'tahun_pajak'=> $request->tahun_pajak,
             'masa_pajak' => $request->masa_pajak,
             'jenis_pajak' => $request->jenis_pajak,
@@ -56,9 +56,9 @@ class PPController extends Controller
         //  dd($request->all());
         
         $hitung_data_hari_ini = PphPasal::select("pphpasal.id")
-        ->join('dokumen_pphpasal', 'pphpasal.id', '=', 'dokumen_pphpasal.pphpasal')
-        ->where('tgl_dokumen', date('Y-m-d',time()))
-        ->get()->count() + 1; 
+        ->join('dokumen_pphpasal', 'pphpasal.id', '=', 'dokumen_pphpasal.pphpasal_id')
+        ->where('tgl_dokumen', date('d-m-Y',time()))
+        ->get()->count(); 
         // $pphpasal= new Pphpasal();
         // $pphpasal->create($request->all());
         $data = [
@@ -75,7 +75,7 @@ class PPController extends Controller
             'tarif' => $request->tarif,
             'jumlah_setor' => $request->jumlah_setor,
             'pengaturan_id' => $request->pengaturan_id,
-            'no_bukti' => date('Ymd',time()).str_pad($hitung_data_hari_ini, 6, '0', STR_PAD_LEFT),
+            'no_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             // 'no_bukti' => '2',
             'status' => 'belum posting'
         ];
@@ -83,7 +83,7 @@ class PPController extends Controller
         $pphpasal->create($data);
         $pphpasal = PphPasal::latest()->first();
         $dokumen = [
-            'pphpasal' => $pphpasal->id,
+            'pphpasal_id' => $pphpasal->id,
             'nama_dokumen' => $request->nama_dokumen,
             'no_dokumen' => $request->no_dokumen,
             'tgl_dokumen' => $request->tgl_dokumen,
@@ -136,9 +136,10 @@ class PPController extends Controller
         //  dd($request->all());
         
         $hitung_data_hari_ini = PphNon::select("pph_nonresiden.id")
-        ->join('dokumen_pphnon', 'pph_nonresiden.id', '=', 'dokumen_pphnon.pph_nonresiden')
-        ->where('tgl_dokumen', date('Y-m-d',time()))
-        ->get()->count() + 1; 
+        ->join('dokumen_pphnon', 'pph_nonresiden.id', '=', 'dokumen_pphnon.pphnon_id')
+        ->where('dokumen_pphnon.tgl_dokumen', date('d-m-Y',time()))
+        ->get()->count(); 
+
         // $pph_nonresiden= new PphNon();
         // $pph_nonresiden->create($request->all());
         $data = [
@@ -160,14 +161,15 @@ class PPController extends Controller
             'netto' => $request->netto,
             'tarif' => $request->tarif,
             'jumlah_setor' => $request->jumlah_setor,
-            'no_bukti' => date('Ymd',time()).str_pad($hitung_data_hari_ini, 6, '0', STR_PAD_LEFT),
+            'no_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             // 'no_bukti' => '2',
             'status' => 'belum posting'
         ];
         $pph_nonresiden= new PphNon();
         $pph_nonresiden->create($data);
+        $pph_nonresiden = PphNon::latest()->first();
         $dokumen = [
-            'pph_nonresiden_id' => $pph_nonresiden->id,
+            'pphnon_id' => $pph_nonresiden->id,
             'nama_dokumen' => $request->nama_dokumen,
             'no_dokumen' => $request->no_dokumen,
             'tgl_dokumen' => $request->tgl_dokumen,
@@ -179,23 +181,18 @@ class PPController extends Controller
 
     public function getNoFasilitasNon(Request $request){
         $tmp = null;
-        if($request->skb){
-            $tmp = $request->skb;
+        if($request->skdwpln){
+            $tmp = $request->skdwpln;
         }
-        if($request->dt){
-            $tmp = $request->dt;
-            
-        }
-        if($request->suket){
-            $tmp = $request->suket;
-            
+        if($request->dtp){
+            $tmp = $request->dtp;
         }
         if($request->lainnya){
-            $tmp = $request->lainnya;
-            
+            $tmp = $request->lainnya;  
         }
         return $tmp;
     }
+
     public function hapus_dokumennon($id){
         $dokumen_pphnon= DokumenPphNon::find($id);
         $dokumen_pphnon->delete();

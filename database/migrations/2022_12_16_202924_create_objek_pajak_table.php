@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kode_pajak');
             $table->string('nama_pajak');
             $table->string('persen');
-            $table->string('netto');
+            $table->string('netto')->nullable();
             $table->timestamps();
         });
     }

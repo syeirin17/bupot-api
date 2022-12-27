@@ -28,11 +28,13 @@ return new class extends Migration
             $table->string('no_kitas');
             $table->string('kode_objek_pajak');
             $table->enum('fasilitas_pajak_penghasilan',['tanpa fasilitas','surat keterangan bebas','pph ditanggung pemerintah','surat keterangan berdasarkan pp no 23 2018','fasilitas lainnya berdasarkan']);
-            $table->string('no_fasilitas');
+            $table->string('no_fasilitas')->nullable();
             $table->string('jumlah_penghasilan_bruto');
             $table->string('netto');
             $table->string('tarif');
             $table->string('jumlah_setor');
+            $table->string('no_bukti');
+            $table->string('status');
             $table->timestamps();
         });
     }

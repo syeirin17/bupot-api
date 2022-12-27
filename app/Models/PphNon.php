@@ -27,7 +27,9 @@ class PphNon extends Model
         'jumlah_penghasilan_bruto',
         'netto',
         'tarif',
-        'jumlah_setor'
+        'jumlah_setor',
+        'no_bukti',
+        'status'
     ];
     
 }

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('dokumen_pphnon', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_dokumen');
+            $table->string('no_dokumen');
+            $table->string('tgl_dokumen');
+            $table->unsignedBigInteger('pphnon_id');
+            $table->foreign('pphnon_id')->references('id')->on('pphnon')->onDelete('cascade');
             $table->timestamps();
         });
     }
