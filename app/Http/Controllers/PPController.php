@@ -16,7 +16,7 @@ class PPController extends Controller
         //  dd($request->all());
         try {
             $hitung_data_hari_ini = PphSendiri::select("id")
-        ->where('tanggal_setor', date('Y-m-d',time()))
+        ->where('tanggal_setor', date('d-m-Y',time()))
         ->get()->count(); 
         // return response()->json($hitung_data_hari_ini,200);
         $data = [
@@ -78,7 +78,8 @@ class PPController extends Controller
             'pengaturan_id' => $request->pengaturan_id,
             'no_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             // 'no_bukti' => '2',
-            'status' => 'belum posting'
+            'status' => 'belum posting',
+            
         ];
         $pphpasal= new PphPasal();
         $pphpasal->create($data);
@@ -115,6 +116,7 @@ class PPController extends Controller
         }
         return $tmp;
     }
+
     public function hapus_dokumen($id){
         $dokumen_pph= DokumenPphPasal::find($id);
         $dokumen_pph->delete();
@@ -165,8 +167,7 @@ class PPController extends Controller
             'no_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             // 'no_bukti' => '2',
             'status' => 'belum posting',
-            'kelebihan_pemotongan' => $request->kelebihan_pemotongan,
-            'pernyataan' => $request->pernyataan
+            
         ];
         $pph_nonresiden= new PphNon();
         $pph_nonresiden->create($data);
@@ -194,12 +195,6 @@ class PPController extends Controller
             $tmp = $request->lainnya;  
         }
         return $tmp;
-    }
-
-    public function hapus_dokumennon($id){
-        $dokumen_pphnon= DokumenPphNon::find($id);
-        $dokumen_pphnon->delete();
-        return response()->json('sukses');
     }
 
     public function hapus_pphnon($id){

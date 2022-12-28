@@ -30,8 +30,7 @@ class PphNon extends Model
         'jumlah_setor',
         'no_bukti',
         'status',
-        'kelebihan_pemotongan',
-        'pernyataan'
+        
     ];
     
 }

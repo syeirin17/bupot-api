@@ -35,8 +35,7 @@ return new class extends Migration
             $table->string('jumlah_setor');
             $table->string('no_bukti');
             $table->string('status');
-            $table->string('kelebihan_pemotongan', ['pengembalian', 'pemindahbukuan']);
-            $table->string('pernyataan');
+           
             $table->timestamps();
         });
     }
