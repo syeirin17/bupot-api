@@ -90,7 +90,7 @@ class PPController extends Controller
             'no_dokumen' => $request->no_dokumen,
             'tgl_dokumen' => $request->tgl_dokumen,
         ];
-        // return response()->json([$pphpasal,$dokumen]);    
+        // return response()->json([$pphnon,$dokumen]);    
 
         $dokumen_pph= new DokumenPphPasal();
         $dokumen_pph->create($dokumen);
@@ -167,6 +167,8 @@ class PPController extends Controller
             'no_bukti' => date('Ymd',time()).str_pad(((int)$hitung_data_hari_ini += 1), 6, '0', STR_PAD_LEFT),
             // 'no_bukti' => '2',
             'status' => 'belum posting',
+            'kelebihan_pemotongan' => $request->kelebihan_pemotongan,
+            'pernyataan' => $request->pernyataan
             
         ];
         $pph_nonresiden= new PphNon();
@@ -208,4 +210,5 @@ class PPController extends Controller
         $data = Posting::get();
         return response()->json($data,200);
     }
+
 }

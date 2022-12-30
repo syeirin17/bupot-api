@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pphpasal', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pengaturan_id')->nullable()->constrained('pengaturan');
             $table->string('tahun_pajak');
             $table->string('masa_pajak');
             $table->string('nama');
@@ -29,7 +30,8 @@ return new class extends Migration
             $table->string('jumlah_setor');
             $table->string('no_bukti');
             $table->string('status');
-            $table->foreignId('pengaturan_id')->nullable()->constrained('pengaturan');
+            $table->enum('kelebihan_pemotongan',['pengembalian','pemindahbukuan']);
+            $table->string('status');
             $table->timestamps();
         });
     }

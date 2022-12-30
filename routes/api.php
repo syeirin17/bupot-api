@@ -37,4 +37,10 @@ use App\Http\Controllers\PPController;
     Route::get('hapus_dokumennon/{id}', [PPController::class, 'hapus_dokumennon']);
     Route::get('hapus_pphnon/{id}', [PPController::class, 'hapus_pphnon']);
     
+    Route::get('posting', [PPController::class, 'get_posting']);
+
+    Route::get('rekamspt', [SPTController::class, 'get_rekam_spt']);
+    Route::get('tambah_buktisetor', [SPTController::class, 'proses_tambah_buktisetor']);
+
+
 // });

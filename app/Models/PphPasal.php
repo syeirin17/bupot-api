@@ -26,7 +26,8 @@ class PphPasal extends Model
         'pengaturan_id',
         'no_bukti',
         'status',
-        
+        'kelebihan_pemotongan',
+        'pernyataan'
     ];
     
 }
