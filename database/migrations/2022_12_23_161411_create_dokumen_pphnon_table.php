@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('no_dokumen');
             $table->string('tgl_dokumen');
             $table->unsignedBigInteger('pphnon_id');
-            $table->foreign('pphnon_id')->references('id')->on('pphnon')->onDelete('cascade');
+            $table->foreign('pphnon_id')->references('id')->on('pph_nonresiden')->onDelete('cascade');
             $table->timestamps();
         });
     }

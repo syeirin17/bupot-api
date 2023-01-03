@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Models\RekamSPT;
+
 use Exception;
 use Illuminate\Http\Request;
 
 class SPTController extends Controller
 {
-    public function get_tambah(){
-        $data = RekamSPT::get();
-        return response()->json($data,200);
-    }
+   
 
-    public function proses_tambah_buktisetor( $request){
+    public function proses_tambah_buktisetor(Request $request){
         
         $data = [
             'jenis_bukti_penyetoran' => $request->jenis_bukti_penyetoran,

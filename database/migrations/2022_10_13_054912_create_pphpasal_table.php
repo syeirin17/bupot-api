@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('tarif');
             $table->string('jumlah_setor');
             $table->string('no_bukti');
-            $table->string('status');
             $table->enum('kelebihan_pemotongan',['pengembalian','pemindahbukuan']);
             $table->string('status');
             $table->timestamps();

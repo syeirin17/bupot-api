@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengController;
 use App\Http\Controllers\PPController;
+use App\Http\Controllers\SPTController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,10 +41,10 @@ use App\Http\Controllers\PPController;
     
     Route::get('posting', [PPController::class, 'get_posting']);
 
-    Route::get('tambah', [SPTController::class, 'get_tambah']);
+
     Route::get('daftarbuktisetor', [SPTController::class, 'sptmasa']);
     Route::post('tambah_buktisetor', [SPTController::class, 'proses_tambah_buktisetor']);
-    Route::get('hapus_buktisetor', [SPTController::class, 'hapus_buktisetor']);
+    Route::get('hapus_buktisetor/{id}', [SPTController::class, 'hapus_buktisetor']);
 
 
 
