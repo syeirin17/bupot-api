@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('rekam_spt', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('posting_id')->nullable()->constrained('posting');
             $table->enum('jenis_bukti_penyetoran',['surat setoran pajak','pemindahbukuan']);
             $table->string('npwp');
             $table->string('ntpn');
-            $table->string('nomor_bukti');
             $table->string('nomor_pemindahbukuan')->nullable();
             $table->string('tahun_pajak');
             $table->string('masa_pajak');
@@ -27,7 +25,6 @@ return new class extends Migration
             $table->string('jenis_setoran');
             $table->string('jumlah_setor');
             $table->string('tanggal_setor');
-            $table->string('selisih');
             $table->timestamps();
         });
     }

@@ -14,7 +14,6 @@ class RekamSPT extends Model
         'npwp',
         'ntpn',
         'nomor_pemindahbukuan',
-        'nomor_bukti',
         'tahun_pajak',
         'masa_pajak',
         'jenis_pajak',

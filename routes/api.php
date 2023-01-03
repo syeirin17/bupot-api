@@ -39,8 +39,11 @@ use App\Http\Controllers\PPController;
     
     Route::get('posting', [PPController::class, 'get_posting']);
 
-    Route::get('rekamspt', [SPTController::class, 'get_rekam_spt']);
-    Route::get('tambah_buktisetor', [SPTController::class, 'proses_tambah_buktisetor']);
+    Route::get('tambah', [SPTController::class, 'get_tambah']);
+    Route::get('daftarbuktisetor', [SPTController::class, 'sptmasa']);
+    Route::post('tambah_buktisetor', [SPTController::class, 'proses_tambah_buktisetor']);
+    Route::get('hapus_buktisetor', [SPTController::class, 'hapus_buktisetor']);
+
 
 
 // });
